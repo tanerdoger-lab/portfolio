@@ -16,7 +16,7 @@ const architectureProjects = [
 ];
 
 const photographyWorks = [
-  { title: "The Passenger", description: "Black & White on Paper — 36 × 50.3 cm. Awarded on 1x.", image: "/images/the-passenger.jpeg" },
+  { title: "The Passenger", description: "Black & White on Paper — 36 × 50.3 cm. Awarded on 1x.", image: "/images/the-passenger.jpeg", exif: "Sony α7c  ·  50mm  ·  f/4.0  ·  1/125s  ·  ISO 100" },
 ];
 
 function FadeIn({ children, delay = 0, style = {} }) {
@@ -69,6 +69,52 @@ function PlaceholderImage({ label, aspect = "4/3" }) {
       }}
     >
       {label}
+    </div>
+  );
+}
+
+function PhotoImage({ src, alt, exif }) {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <div
+      style={{ position: "relative", overflow: "hidden", cursor: "default" }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <img
+        src={src}
+        alt={alt}
+        style={{
+          width: "100%",
+          display: "block",
+          WebkitUserSelect: "none",
+          userSelect: "none",
+          pointerEvents: "none",
+        }}
+        onContextMenu={(e) => e.preventDefault()}
+        draggable={false}
+      />
+      {exif && (
+        <div
+          style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            padding: "24px 16px 14px",
+            background: "linear-gradient(transparent, rgba(0,0,0,0.45))",
+            opacity: hovered ? 1 : 0,
+            transition: "opacity 0.4s ease",
+            fontFamily: "'Courier New', monospace",
+            fontSize: "11px",
+            letterSpacing: "0.1em",
+            color: "rgba(255,255,255,0.8)",
+            textAlign: "right",
+          }}
+        >
+          {exif}
+        </div>
+      )}
     </div>
   );
 }
@@ -245,13 +291,7 @@ function PhotographyPage({ onBack }) {
           <div key={i} style={{ marginBottom: "120px" }}>
             <FadeIn delay={i * 120}>
               {work.image ? (
-                <img
-                  src={work.image}
-                  alt={work.title}
-                  style={{ width: "100%", display: "block", WebkitUserSelect: "none", userSelect: "none", pointerEvents: "none" }}
-                  onContextMenu={(e) => e.preventDefault()}
-                  draggable={false}
-                />
+                <PhotoImage src={work.image} alt={work.title} exif={work.exif} />
               ) : (
                 <PlaceholderImage label={work.title} aspect={work.aspect || "4/3"} />
               )}
