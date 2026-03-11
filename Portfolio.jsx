@@ -16,12 +16,7 @@ const architectureProjects = [
 ];
 
 const photographyWorks = [
-  { title: "The Domes", description: "Black & White on Paper — 33.3 × 45.8 cm. Published on 1x.", aspect: "3/4" },
-  { title: "Ferries of Istanbul", description: "Black & White on Paper — 46 × 29.3 cm. Published on 1x.", aspect: "16/9" },
-  { title: "Cat Eyes", description: "Black & White on Paper — 53 × 40.6 cm. Published on 1x.", aspect: "4/3" },
-  { title: "The Door", description: "Black & White on Paper — 40.6 × 40.6 cm. Accepted on 1x.", aspect: "1/1" },
-  { title: "The Minarets", description: "Color on Paper — 39.3 × 29.1 cm. Accepted on 1x.", aspect: "3/4" },
-  { title: "Hi", description: "Black & White on Paper — 43.5 × 29 cm. Accepted on 1x.", aspect: "3/2" },
+  { title: "The Passenger", description: "Black & White on Paper — 36 × 50.3 cm. Awarded on 1x.", image: "/images/the-passenger.jpeg" },
 ];
 
 function FadeIn({ children, delay = 0, style = {} }) {
@@ -249,7 +244,11 @@ function PhotographyPage({ onBack }) {
         {photographyWorks.map((work, i) => (
           <div key={i} style={{ marginBottom: "120px" }}>
             <FadeIn delay={i * 120}>
-              <PlaceholderImage label={work.title} aspect={work.aspect} />
+              {work.image ? (
+                <img src={work.image} alt={work.title} style={{ width: "100%", display: "block" }} />
+              ) : (
+                <PlaceholderImage label={work.title} aspect={work.aspect || "4/3"} />
+              )}
               <h3 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: "clamp(20px, 3vw, 28px)", fontWeight: 400, marginTop: "24px", marginBottom: "8px", letterSpacing: "0.05em", color: "#1a1a1a" }}>
                 {work.title}
               </h3>
@@ -311,7 +310,7 @@ function ContactPage({ onBack }) {
           <h2 style={{ fontFamily: "'Courier New', monospace", fontSize: "11px", letterSpacing: "0.25em", textTransform: "uppercase", color: "#999", marginBottom: "60px" }}>
             Contact
           </h2>
-          <a
+          
             href="mailto:hello@tanerdoger.com"
             onMouseEnter={() => setEmailHover(true)}
             onMouseLeave={() => setEmailHover(false)}
@@ -321,7 +320,7 @@ function ContactPage({ onBack }) {
           </a>
           <div style={{ marginTop: "48px", display: "flex", gap: "32px", justifyContent: "center", flexWrap: "wrap" }}>
             {links.map((link, i) => (
-              <a
+              
                 key={link.label}
                 href={link.href}
                 target="_blank"
