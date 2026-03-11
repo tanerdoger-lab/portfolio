@@ -310,7 +310,7 @@ function ContactPage({ onBack }) {
           <h2 style={{ fontFamily: "'Courier New', monospace", fontSize: "11px", letterSpacing: "0.25em", textTransform: "uppercase", color: "#999", marginBottom: "60px" }}>
             Contact
           </h2>
-          
+          <a
             href="mailto:hello@tanerdoger.com"
             onMouseEnter={() => setEmailHover(true)}
             onMouseLeave={() => setEmailHover(false)}
@@ -320,7 +320,7 @@ function ContactPage({ onBack }) {
           </a>
           <div style={{ marginTop: "48px", display: "flex", gap: "32px", justifyContent: "center", flexWrap: "wrap" }}>
             {links.map((link, i) => (
-              
+              <a
                 key={link.label}
                 href={link.href}
                 target="_blank"
