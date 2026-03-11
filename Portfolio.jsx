@@ -245,7 +245,13 @@ function PhotographyPage({ onBack }) {
           <div key={i} style={{ marginBottom: "120px" }}>
             <FadeIn delay={i * 120}>
               {work.image ? (
-                <img src={work.image} alt={work.title} style={{ width: "100%", display: "block" }} />
+                <img
+                  src={work.image}
+                  alt={work.title}
+                  style={{ width: "100%", display: "block", WebkitUserSelect: "none", userSelect: "none", pointerEvents: "none" }}
+                  onContextMenu={(e) => e.preventDefault()}
+                  draggable={false}
+                />
               ) : (
                 <PlaceholderImage label={work.title} aspect={work.aspect || "4/3"} />
               )}
@@ -356,6 +362,8 @@ export default function Portfolio() {
 
   return (
     <div
+      onContextMenu={(e) => e.preventDefault()}
+      onDragStart={(e) => e.preventDefault()}
       style={{
         fontFamily: "'Cormorant Garamond', Georgia, serif",
         color: "#1a1a1a",
@@ -363,6 +371,8 @@ export default function Portfolio() {
         minHeight: "100vh",
         opacity: transitioning ? 0 : 1,
         transition: "opacity 0.3s ease",
+        WebkitUserSelect: "none",
+        userSelect: "none",
       }}
     >
       {page === "home" && <HomePage onNavigate={navigate} />}
