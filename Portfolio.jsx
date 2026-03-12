@@ -16,7 +16,22 @@ const architectureProjects = [
 ];
 
 const photographyWorks = [
-  { title: "The Passenger", description: "Black & White on Paper — 36 × 50.3 cm. Awarded on 1x.", image: "/images/the-passenger.jpeg", exif: "Sony α7c  ·  50mm  ·  f/4.0  ·  1/125s  ·  ISO 100" },
+  { title: "The Passenger", description: "Black and White on Paper — 36 x 50.3 cm. Awarded on 1x.", image: "/images/1.jpeg" },
+  { title: "Waiting", description: "Black and White on Paper — 40.6 x 40.6 cm. Awarded on 1x.", image: "/images/2.jpg" },
+  { title: "Glass and Fire", description: "Black and White on Paper — 30.2 x 36.4 cm. Published on 1x.", image: "/images/3.jpg" },
+  { title: "Look Down", description: "Color on Paper — 40 x 47.7 cm. Published on 1x.", image: "/images/4.jpg" },
+  { title: "Bridge", description: "Black and White on Paper — 34 x 20.7 cm. Published on 1x.", image: "/images/5.jpg" },
+  { title: "Phallic Hegemony", description: "Black and White on Paper — 46.3 x 28.2 cm. Published on 1x.", image: "/images/6.jpg" },
+  { title: "Ruhsar", description: "Black and White on Paper — 53 x 40.6 cm. Published on 1x.", image: "/images/7.jpg" },
+  { title: "Ferries of Istanbul", description: "Black and White on Paper — 46 x 29.3 cm. Published on 1x.", image: "/images/8.jpg" },
+  { title: "The Domes", description: "Black and White on Paper — 33.3 x 45.8 cm. Published on 1x.", image: "/images/9.jpg" },
+  { title: "The Urban Passage", description: "Black and White on Paper — 31.1 x 51.1 cm. Accepted on 1x.", image: "/images/10.jpeg" },
+  { title: "Street Musicians", description: "Black and White on Paper — 34.4 x 55.3 cm. Accepted on 1x.", image: "/images/11.jpeg" },
+  { title: "The Door", description: "Black and White on Paper — 40.6 x 40.6 cm. Accepted on 1x.", image: "/images/12.jpg" },
+  { title: "Hi", description: "Black and White on Paper — 43.5 x 29 cm. Accepted on 1x.", image: "/images/13.jpeg" },
+  { title: "The Fatal Breath", description: "Black and White on Paper — 31.9 x 35.4 cm. Accepted on 1x.", image: "/images/14.jpg" },
+  { title: "The Minarets", description: "Color on Paper — 39.3 x 29.1 cm. Accepted on 1x.", image: "/images/15.jpg" },
+  { title: "Woman", description: "Color on Paper — 30.9 x 42.6 cm. Accepted on 1x.", image: "/images/16.jpg" },
 ];
 
 function FadeIn({ children, delay = 0, style = {} }) {
@@ -69,52 +84,6 @@ function PlaceholderImage({ label, aspect = "4/3" }) {
       }}
     >
       {label}
-    </div>
-  );
-}
-
-function PhotoImage({ src, alt, exif }) {
-  const [hovered, setHovered] = useState(false);
-  return (
-    <div
-      style={{ position: "relative", overflow: "hidden", cursor: "default" }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      <img
-        src={src}
-        alt={alt}
-        style={{
-          width: "100%",
-          display: "block",
-          WebkitUserSelect: "none",
-          userSelect: "none",
-          pointerEvents: "none",
-        }}
-        onContextMenu={(e) => e.preventDefault()}
-        draggable={false}
-      />
-      {exif && (
-        <div
-          style={{
-            position: "absolute",
-            bottom: 0,
-            left: 0,
-            right: 0,
-            padding: "24px 16px 14px",
-            background: "linear-gradient(transparent, rgba(0,0,0,0.45))",
-            opacity: hovered ? 1 : 0,
-            transition: "opacity 0.4s ease",
-            fontFamily: "'Courier New', monospace",
-            fontSize: "11px",
-            letterSpacing: "0.1em",
-            color: "rgba(255,255,255,0.8)",
-            textAlign: "right",
-          }}
-        >
-          {exif}
-        </div>
-      )}
     </div>
   );
 }
@@ -181,7 +150,7 @@ function HomePage({ onNavigate }) {
             margin: 0,
           }}
         >
-          Architect & Photographer
+          Architect &amp; Photographer
         </p>
       </div>
 
@@ -244,7 +213,7 @@ function BackButton({ onClick }) {
         gap: "8px",
       }}
     >
-      <span style={{ fontSize: "18px", fontWeight: 300 }}>←</span>
+      <span style={{ fontSize: "18px", fontWeight: 300 }}>&#8592;</span>
     </div>
   );
 }
@@ -290,11 +259,13 @@ function PhotographyPage({ onBack }) {
         {photographyWorks.map((work, i) => (
           <div key={i} style={{ marginBottom: "120px" }}>
             <FadeIn delay={i * 120}>
-              {work.image ? (
-                <PhotoImage src={work.image} alt={work.title} exif={work.exif} />
-              ) : (
-                <PlaceholderImage label={work.title} aspect={work.aspect || "4/3"} />
-              )}
+              <img
+                src={work.image}
+                alt={work.title}
+                style={{ width: "100%", display: "block", WebkitUserSelect: "none", userSelect: "none", pointerEvents: "none" }}
+                onContextMenu={(e) => e.preventDefault()}
+                draggable={false}
+              />
               <h3 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: "clamp(20px, 3vw, 28px)", fontWeight: 400, marginTop: "24px", marginBottom: "8px", letterSpacing: "0.05em", color: "#1a1a1a" }}>
                 {work.title}
               </h3>
