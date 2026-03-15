@@ -1,5 +1,26 @@
 import { useState, useEffect, useRef } from "react";
 
+const ROUTES = {
+  "/": "home",
+  "/architecture": "Architecture",
+  "/photography": "Photography",
+  "/about": "About",
+  "/contact": "Contact",
+};
+
+const ROUTE_TITLES = {
+  "home": "Taner Doger — Architect & Photographer | Istanbul",
+  "Architecture": "Architecture — Taner Doger",
+  "Photography": "Photography — Taner Doger",
+  "About": "About — Taner Doger",
+  "Contact": "Contact — Taner Doger",
+};
+
+function getPageFromPath() {
+  const path = window.location.pathname.toLowerCase();
+  return ROUTES[path] || "home";
+}
+
 const architectureProjects = [
   {
     title: "Project Name",
@@ -357,11 +378,25 @@ function ContactPage({ onBack }) {
 }
 
 export default function Portfolio() {
-  const [page, setPage] = useState("home");
+  const [page, setPage] = useState(getPageFromPath);
   const [transitioning, setTransitioning] = useState(false);
+
+  useEffect(() => {
+    const handlePopState = () => {
+      setPage(getPageFromPath());
+    };
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
+
+  useEffect(() => {
+    document.title = ROUTE_TITLES[page] || ROUTE_TITLES["home"];
+  }, [page]);
 
   const navigate = (target) => {
     setTransitioning(true);
+    const path = target === "home" ? "/" : `/${target.toLowerCase()}`;
+    window.history.pushState({}, "", path);
     setTimeout(() => {
       setPage(target);
       window.scrollTo(0, 0);
