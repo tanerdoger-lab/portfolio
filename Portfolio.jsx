@@ -47,6 +47,7 @@ const photographyWorks = [
   { title: "Ferries of Istanbul", description: "Black and White on Paper — 46 x 29.3 cm. Published on 1x.", image: "/images/8.jpg" },
   { title: "The Domes", description: "Black and White on Paper — 33.3 x 45.8 cm. Published on 1x.", image: "/images/9.jpg" },
   { title: "The Cat", description: "Black and White on Paper — 35.6 x 41.4 cm. Published on 1x.", image: "/images/17.jpg" },
+  { title: "Women", description: "Black and White on Paper — 35.6 x 40.6 cm. Published on 1x.", image: "/images/p1.jpg" },
   { title: "The Urban Passage", description: "Black and White on Paper — 31.1 x 51.1 cm. Accepted on 1x.", image: "/images/10.jpeg" },
   { title: "Street Musicians", description: "Black and White on Paper — 34.4 x 55.3 cm. Accepted on 1x.", image: "/images/11.jpeg" },
   { title: "The Door", description: "Black and White on Paper — 40.6 x 40.6 cm. Accepted on 1x.", image: "/images/12.jpg" },
@@ -54,6 +55,9 @@ const photographyWorks = [
   { title: "The Fatal Breath", description: "Black and White on Paper — 31.9 x 35.4 cm. Accepted on 1x.", image: "/images/14.jpg" },
   { title: "The Minarets", description: "Color on Paper — 39.3 x 29.1 cm. Accepted on 1x.", image: "/images/15.jpg" },
   { title: "Woman", description: "Color on Paper — 30.9 x 42.6 cm. Accepted on 1x.", image: "/images/16.jpg" },
+  { title: "Tombstones", description: "Black and White on Paper — 40.6 x 46.6 cm. Accepted on 1x.", image: "/images/a1.jpg" },
+  { title: "Man Playing the Violin", description: "Black and White on Paper — 35.6 x 47.6 cm. Accepted on 1x.", image: "/images/a2.jpg" },
+  { title: "Bosphorus", description: "Black and White on Paper — 56.3 x 38.7 cm. Accepted on 1x.", image: "/images/a3.jpg" },
 ];
 
 function FadeIn({ children, delay = 0, style = {} }) {
